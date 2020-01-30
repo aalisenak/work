@@ -1,27 +1,13 @@
-import React from "react";
+import React, {Component} from "react";
 
-const Matches = () => {
-    return(
-        <div>
-            <nav>
-                <ul className="list-group list-group-horizontal">
-                    <li className="list-group-item">date</li>
-                    <li className="list-group-item">area</li>
-                    <li className="list-group-item">match</li>
-                    <li className="list-group-item">result</li>
-                </ul>
-            </nav>
+import './matches.css'
 
-            <ul className="list-group list-group-horizontal">
-                <li className="list-group-item">12-12-2005</li>
-                <li className="list-group-item">Spain</li>
-                <li className="list-group-item">Barcelona - Real</li>
-                <li className="list-group-item">5-0</li>
-            </ul>
+export default class Matches extends Component {
 
-        </div>
+    render() {
+        const {label} = this.props;
+        return <span onChange={ () => console.log({label})}>{label}</span>
+    }
 
-    )
+
 };
-
-export default Matches;
