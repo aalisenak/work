@@ -3,7 +3,7 @@ import React from "react";
 import './table.css'
 import Matches from "../matches/matches";
 
-const Table = ({matches, label}) => {
+const Table = ({matches}) => {
     const elements = matches.map((item) => {
         return (
             <li className="matches__item"

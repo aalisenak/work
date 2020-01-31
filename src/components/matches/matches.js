@@ -6,7 +6,9 @@ export default class Matches extends Component {
 
     render() {
         const {label} = this.props;
-        return <span onChange={ () => console.log({label})}>{label}</span>
+        return <span onChange={ () => console.log({label})}>
+            {label}
+        </span>
     }
 
 
