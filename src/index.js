@@ -1,22 +1,37 @@
-// fetch("https://api.football-data.org/v2/competitions/", {
-//     "headers": {
-//         "X-Auth-Token": "bef879d6107c495b8a2bf9d4b06e24db"
-//     }
-// })
-//     .then(response => {
-//         return response.json()
-//     })
-//     .then(data => {
-//         console.log(data);
-//     })
-//     .catch(err => {
-//         console.log(err);
-//     });
+class BeerService {
 
-import React from "react";
-import ReactDOM from "react-dom"
-import App from './components/app/app'
+    _apiBase = 'https://restcountries.eu/rest/v2';
 
-ReactDOM.render(<App/>,
-    document.getElementById('root')
-);
+    async getResource(url) {
+        const res = await fetch(`${this._apiBase}${url}`);
+
+        if (!res.ok) {
+            throw new Error(`Could not fetch ${url}, received ${res.status}`)
+        }
+
+        return await res.json();
+    };
+
+    async getAllCountries() {
+        return await this.getResource(`/all/`);
+    }
+
+    async getCountry(name) {
+        const res = await this.getResource(`/name/${name}`);
+        return res.timezones;
+    }
+
+
+}
+
+const beers = new BeerService();
+
+beers.getAllCountries().then((country) => {
+    country.forEach((p) => {
+
+        console.log(p[1]);
+    })
+});
+
+
+
