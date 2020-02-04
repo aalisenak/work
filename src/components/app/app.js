@@ -1,16 +1,32 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const App =() => {
+export default class App extends Component {
+
+    state = {
+        count: 0
+    };
+
+    addCount = () => {
+        this.setState({
+            count: this.state.count + 1
+        })
+    };
+    delCount = () => {
+        this.setState({
+            count: this.state.count - 1
+        })
+    };
+
+
+    render() {
         return (
-            fetch('https://api.punkapi.com/v2/beers')
-                .then((res) => {
-                    return res.json()
-                })
-                .then((body) => {
-                    console.log(body);
-                })
-        )
+            <div>
+                <p>{this.state.count}</p>
+                <button onClick={this.delCount}>-</button>
+                <button onClick={this.addCount}>+</button>
+            </div>
+        );
+    }
+}
 
-};
 
-export default App;
