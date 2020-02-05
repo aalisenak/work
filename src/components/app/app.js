@@ -1,29 +1,23 @@
 import React, {Component} from 'react';
+import Country from "../country/country";
 
 export default class App extends Component {
-
-    state = {
-        count: 0
-    };
-
-    addCount = () => {
-        this.setState({
-            count: this.state.count + 1
-        })
-    };
-    delCount = () => {
-        this.setState({
-            count: this.state.count - 1
-        })
-    };
-
 
     render() {
         return (
             <div>
-                <p>{this.state.count}</p>
-                <button onClick={this.delCount}>-</button>
-                <button onClick={this.addCount}>+</button>
+                <header>
+                    <div>Countries of the World</div>
+                    <ul>
+                        <li>region</li>
+                        <li>city</li>
+                        <input type="text" placeholder="Search..."/>
+                    </ul>
+                </header>
+                <div>
+                    <Country/>
+                    <div>Flag</div>
+                </div>
             </div>
         );
     }
