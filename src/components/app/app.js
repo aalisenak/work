@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+// import Countries from "../countries/countries";
 import Country from "../country/country";
 
 export default class App extends Component {
@@ -8,17 +9,14 @@ export default class App extends Component {
             <div>
                 <header>
                     <div>Countries of the World</div>
-                    <ul>
-                        <li>region</li>
-                        <li>city</li>
-                        <input type="text" placeholder="Search..."/>
-                    </ul>
+                    <input type="text" placeholder="Search..."/>
                 </header>
                 <div>
-                    <Country/>
 
                     <div>Flag</div>
                 </div>
+
+                <Country/>
             </div>
         );
     }

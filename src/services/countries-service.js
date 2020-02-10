@@ -1,6 +1,8 @@
 export default class CountriesService {
 
     _apiBase = 'https://restcountries.eu/rest/v2';
+    // _apiBase = 'https://www.scorebat.com/video-api';
+    // _apiBase = 'https://swapi.co/api';
 
     async getResource(url) {
         const res = await fetch(`${this._apiBase}${url}`);
@@ -13,20 +15,13 @@ export default class CountriesService {
     };
 
     async getAllCountries() {
-        return await this.getResource(`/all/`);
-        // return this._createCountry(country);
+        const res = await this.getResource(`/all/`);
+        return res.map(this._createCountry)
     }
 
-    // _createCountry() {
-    //     return {
-    //         country: item.name,
-    //         region: item.region,
-    //         subRegion: item.subregion,
-    //         capital: item.capital,
-    //         population: item.population,
-    //         area: item.area,
-    //         language: item.language,
-    //         landBorders: item.borders
-    //     }
-    // }
+    _createCountry = (country) => {
+        return {
+            name: country.name
+        }
+    }
 };

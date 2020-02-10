@@ -7,59 +7,45 @@ export default class Country extends Component {
 
 
     state = {
-        country: null,
-        region: null,
-        subRegion: null,
-        capital: null,
-        population: null,
-        area: null,
-        language: null,
-        landBorders: null
+        countries: null
     };
 
-    constructor() {
-        super();
-        this.updateCountry()
-    }
-
-
-    updateCountry() {
+    componentDidMount() {
         this.countriesService
             .getAllCountries()
-            .then((country) => {
+            .then((countries) => {
+                this.setState({
+                    countries
+                });
+            });
+    }
 
-                country.map((item) => {
+    renderCountries(arr) {
 
-                    this.setState({
-                        country: item.name,
-                        region: item.region,
-                        subRegion: item.subregion,
-                        capital: item.capital,
-                        population: item.population,
-                        area: item.area,
-                        language: item.language,
-                        landBorders: item.borders
-                    })
-                })
-            })
+        return arr.map(({name}) => {
+            return (
+                <li className="list-group-item">
+                    {name}
+                </li>
+            );
+        });
     }
 
 
     render() {
-        const {country, region, subRegion, capital, population, area, language, landBorders} = this.state;
+        const { countries } = this.state;
+
+        if (!countries) {
+            return countries
+        }
+
+
+        const items =  this.renderCountries(countries);
 
         return (
-            <div>
-                <h2><span>Country: </span><span>{country}</span></h2>
-
-                <h3>INFO</h3>
-                <ul>
-                    <li>
-                        <span>{country}: </span>
-                        <span>{capital}</span>
-                    </li>
-                </ul>
-            </div>
+            <ul>
+                {items}
+            </ul>
         );
     }
 }
